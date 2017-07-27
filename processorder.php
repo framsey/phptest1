@@ -3,7 +3,7 @@
 	$oilqty = $_POST['oilqty'];
 	$sparkqty = $_POST['sparkqty'];
 	$address = $_POST['address'];
-	$DOCUMENT_ROOT = $_SEVER['DOCUMENT_ROOT'];
+	$DOCUMENT_ROOT = $_SERVER['DOCUMENT_ROOT'];
 	$date = date('H:i, JS F Y');
  ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
 		echo "<p>Order processed at ".date('H:i, JS F Y')."</P>";
 		echo "<p>your order is as follows:</p>";
 		$totalqty =0;
-		$tatalqty = $tireqty + $oilqty +$sparkqty;
+		$totalqty = $tireqty + $oilqty +$sparkqty;
 		echo "Items ordered:".$totalqty."<br />";
 		if ($totalqty ==0) {
 			echo "you did not order anything on the previous page!<br />";
@@ -30,7 +30,7 @@
 			if ($oilqty>0) {
 				echo $oilqty.'bottles of oil<br />';
 			}
-			if ($sparkqty) {
+			if ($sparkqty>0) {
 				echo $sparkqty.'spark plugs<br />';
 			}
 		}
@@ -48,7 +48,7 @@
 		echo "<p>Address to ship to is".$address."</p>";
 
 		$outputstring =$date."\t".$tireqty."tires \t".$oilqty."oil\t".$sparkqty."spark plugs\t\$".$totalamount."\t".$address."\n";
-		@ $fp =fopen("$DOCUMENT_ROOT/../orders/orders.txt", 'ab');
+		@ $fp =fopen("$DOCUMENT_ROOT/php&mysql/1/orders/orders.txt", 'ab');
 
 		flock($fp, LOCK_EX);
 
@@ -64,5 +64,5 @@
 		echo "<p>order written.</p>";
 		
 	 ?>
-</body>
-</html>
+	</body>
+	</html>
